@@ -1,7 +1,9 @@
 SHELL=/bin/bash
 
+ARGS=""
 BASEDIR=$(PWD)
 OUT="$(BASEDIR)/.out/bin/jsc"
+OBJ="$(BASEDIR)/.out/bin/jsc ${ARGS}"
 SRC="$(BASEDIR)/jsc"
 
 # Color codes
@@ -22,7 +24,7 @@ Reset      := \033[0m
 # Run the application
 run: force-build
 	@echo -e "${Yellow}🚧Running Just Simple Cloud (jsc)...${Reset}"
-	$(OUT)
+	@$(OUT) $(ARGS)
 
 # Display help message
 help-message:
@@ -70,5 +72,6 @@ format:
 	@echo -e "${Yellow}🚧Formatting code...${Reset}"
 	go fmt ./...
 	@echo -e "${Green}Code formatting complete.${Reset}"
+
 
 
