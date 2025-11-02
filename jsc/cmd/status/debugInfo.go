@@ -12,7 +12,7 @@ import (
 func DebugInfo(cmd *cobra.Command) {
 	if debug, _ := cmd.Flags().GetBool("debug"); debug {
 		log.Println("🐛 Debug mode is enabled.")
-    
+
 		if env, _ := cmd.Flags().GetBool("env"); env {
 			// Log all Environment Variables
 			log.Println("Environment Variables:")
@@ -21,7 +21,8 @@ func DebugInfo(cmd *cobra.Command) {
 				color.Unset()
 			}
 		}
-		log.Println("`BASE_PATH` set to:", libs.BASE_PATH) // Use BASE_PATH as needed
+		log.Println("`BASE_PATH` set to:", libs.BASE_PATH)
+		log.Println("`STACK_FILE_NAME` set to:", libs.STACK_FILE_NAME)
+		log.Println("`STACK_FILE` set to:", libs.STACK_FILE)
 	}
-
 }

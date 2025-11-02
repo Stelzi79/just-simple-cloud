@@ -8,7 +8,9 @@ import (
 )
 
 var (
-	BASE_PATH string
+	BASE_PATH       string            // base path for the Just-Simple-Cloud environment
+	STACK_FILE_NAME string = ".stack" // default stack file name
+	STACK_FILE      string = ""       // full path to the stack file
 )
 
 func Init() {
@@ -38,5 +40,21 @@ func Init() {
 	if s, err := os.Stat(BASE_PATH); os.IsNotExist(err) || !s.IsDir() {
 		log.Fatalf("BASE_PATH does not exist: '%s'", BASE_PATH)
 	}
+
+	// get STACK_FILE_NAME from env variable if set
+	if os.Getenv("STACK_FILE_NAME") != "" {
+		STACK_FILE_NAME = os.Getenv("STACK_FILE_NAME")
+		// remove potential quotes
+		STACK_FILE_NAME = strings.ReplaceAll(STACK_FILE_NAME, "\"", "")
+		// remove trailing whitespace
+		STACK_FILE_NAME = strings.TrimSpace(STACK_FILE_NAME)
+	}
+
+	// check if .stack file exists in BASE_PATH
+	stackFilePath := filepath.Join(BASE_PATH, STACK_FILE_NAME)
+	if s, err := os.Stat(stackFilePath); os.IsNotExist(err) || s.IsDir() {
+		log.Fatalf("'%s' file does not exist in BASE_PATH: '%s'", STACK_FILE_NAME, stackFilePath)
+	}
+	STACK_FILE = stackFilePath
 
 }
