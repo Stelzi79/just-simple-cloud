@@ -3,8 +3,8 @@ SHELL=/bin/bash
 ARGS=""
 BASEDIR=$(PWD)
 OUT="$(BASEDIR)/.out/bin/jsc"
-OBJ="$(BASEDIR)/.out/bin/jsc ${ARGS}"
 SRC="$(BASEDIR)/jsc"
+BASE_PATH="$(BASEDIR)/.testStack" # Default base path for testing
 
 # Color codes
 Green      := \033[0;32m
@@ -24,7 +24,7 @@ Reset      := \033[0m
 # Run the application
 run: force-build
 	@echo -e "${Yellow}🚧Running Just Simple Cloud (jsc)...${Reset}"
-	@$(OUT) $(ARGS)
+	@BASE_PATH='$(BASE_PATH)' $(OUT) $(ARGS)
 
 # Display help message
 help-message:
