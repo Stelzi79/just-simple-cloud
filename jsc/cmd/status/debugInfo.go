@@ -21,8 +21,10 @@ func DebugInfo(cmd *cobra.Command) {
 				color.Unset()
 			}
 		}
+
 		log.Println("`BASE_PATH` set to:", libs.BASE_PATH)
 		log.Println("`STACK_FILE_NAME` set to:", libs.STACK_FILE_NAME)
 		log.Println("`STACK_FILE` set to:", libs.STACK_FILE)
+		log.Printf("Loaded stack file: %+v", libs.STACK_DATA.PrettyPrint())
 	}
 }

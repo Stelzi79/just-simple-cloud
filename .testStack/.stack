@@ -1,0 +1,5 @@
+type: .rootstack
+stacks:
+  - name: stackOne    
+  - name: stackTwo
+    src: stackTwo/.stack

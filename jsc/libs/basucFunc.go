@@ -5,12 +5,15 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/Stelzi79/just-simple-cloud/cmd/types"
 )
 
 var (
-	BASE_PATH       string            // base path for the Just-Simple-Cloud environment
-	STACK_FILE_NAME string = ".stack" // default stack file name
-	STACK_FILE      string = ""       // full path to the stack file
+	BASE_PATH       string                     // base path for the Just-Simple-Cloud environment
+	STACK_FILE_NAME string          = ".stack" // default stack file name
+	STACK_FILE      string          = ""       // full path to the stack file
+	STACK_DATA      types.StackFile            // parsed stack file datata
 )
 
 func Init() {
@@ -57,4 +60,25 @@ func Init() {
 	}
 	STACK_FILE = stackFilePath
 
+	// read and validate .stack file
+	if err := readAndValidateStackFile(); err != nil {
+		log.Fatalf("Error reading .stack file '%s': %v", STACK_FILE, err)
+	}
+}
+
+func readAndValidateStackFile() error {
+	stack, err := types.NewStackFile(STACK_FILE)
+	if err != nil {
+		log.Panicf("Error loading stack file '%s': %v", STACK_FILE, err)
+	}
+
+	// Validate that the stack file is of type .rootstack
+	// Later we can have other types like substacks, etc.
+	if !stack.IsRootStack() {
+		log.Fatalf("Invalid stack file type in '%s': expected '.rootstack', got '%s'", STACK_FILE, stack.Type)
+	}
+
+	// log.Printf("Loaded stack file: %+v", stack.PrettyPrint())
+	STACK_DATA = *stack
+	return nil
 }
