@@ -2,6 +2,7 @@ package libs
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/fatih/color"
 )
@@ -10,6 +11,13 @@ import (
 func ColorPrintln(c color.Attribute, text string) {
 	color.Set(c)
 	fmt.Println(text)
+	color.Unset()
+}
+
+// ColorLogPrintln prints log text in the specified color
+func ColorLogPrintln(c color.Attribute, text string) {
+	color.Set(c)
+	log.Println(text)
 	color.Unset()
 }
 

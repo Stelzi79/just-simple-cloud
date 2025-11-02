@@ -1,6 +1,9 @@
 package status
 
 import (
+	"log"
+	"os"
+
 	"github.com/Stelzi79/just-simple-cloud/libs"
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
@@ -8,7 +11,17 @@ import (
 
 func DebugInfo(cmd *cobra.Command) {
 	if debug, _ := cmd.Flags().GetBool("debug"); debug {
-		libs.ColorPrintln(color.FgRed, "🐛 Debug mode is enabled.")
+		log.Println("🐛 Debug mode is enabled.")
+    
+		if env, _ := cmd.Flags().GetBool("env"); env {
+			// Log all Environment Variables
+			log.Println("Environment Variables:")
+			for _, env := range os.Environ() {
+				log.Println(env)
+				color.Unset()
+			}
+		}
+		log.Println("`BASE_PATH` set to:", libs.BASE_PATH) // Use BASE_PATH as needed
 	}
 
 }

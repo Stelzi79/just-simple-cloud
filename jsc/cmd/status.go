@@ -18,6 +18,7 @@ var statusCmd = &cobra.Command{
 information about running services, resource usage, updates, and any active alerts.
 `,
 	Run: func(cmd *cobra.Command, args []string) {
+		libs.Init()
 		status.DebugInfo(cmd)
 
 		libs.ColorPrintln(color.FgCyan, "🪄 Status of your ☁️ environment:")
@@ -37,4 +38,6 @@ func init() {
 
 	// Flag to show debug information
 	statusCmd.Flags().BoolP("debug", "d", false, "Show debug information")
+	// Flag to print Environment Variables in debug mode
+	statusCmd.Flags().BoolP("env", "e", false, "Print Environment Variables in debug mode")
 }
