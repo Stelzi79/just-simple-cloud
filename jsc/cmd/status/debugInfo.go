@@ -21,6 +21,7 @@ func DebugInfo(cmd *cobra.Command) {
 				color.Unset()
 			}
 		}
+    
 
 		log.Println("`BASE_PATH` set to:", libs.BASE_PATH)
 		log.Println("`STACK_FILE_NAME` set to:", libs.STACK_FILE_NAME)

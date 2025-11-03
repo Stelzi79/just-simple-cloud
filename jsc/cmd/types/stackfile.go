@@ -10,14 +10,14 @@ import (
 )
 
 type Stack struct {
-	Name   string  `yaml:"name"`
-	Source *string `yaml:"src,omitempty"`
+	DependsOn []string `yaml:"dependsOn,omitempty"`
+	Source    string   `yaml:"src,omitempty"`
 }
 
 type StackFile struct {
-	Name   string  `yaml:"name"`
-	Type   string  `yaml:"type"`
-	Stacks []Stack `yaml:"stacks"`
+	Name   string           `yaml:"name"`
+	Type   string           `yaml:"type"`
+	Stacks map[string]Stack `yaml:"stacks"`
 }
 
 // NewStackFile reads and parses the stack file from the given path

@@ -1,5 +1,14 @@
 type: .rootstack
 stacks:
-  - name: stackOne    
-  - name: stackTwo
+  stackOne:
+  stackTwo:
     src: stackTwo/.stack
+  🏷️🏷️:
+    dependsOn:
+      - stackTwo
+      - stackOne
+    src: ./.stack
+  sdfkjsadfk asldj flsadjflkas:
+  a:
+  b99:
+    src: ./a/.stack
