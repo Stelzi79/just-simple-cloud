@@ -1,6 +1,7 @@
 type: .rootstack
 stacks:
   stackOne:
+    type: subFolder
   stackTwo:
     src: stackTwo/.stack
   🏷️🏷️:
@@ -12,3 +13,5 @@ stacks:
   a:
   b99:
     src: ./a/.stack
+infra:
+  traefic:

@@ -11,13 +11,22 @@ import (
 
 type Stack struct {
 	DependsOn []string `yaml:"dependsOn,omitempty"`
+	Type      string   `yaml:"type,omitempty"`
 	Source    string   `yaml:"src,omitempty"`
 }
+
+type StackType int
+
+const (
+	folder StackType = iota
+	gitRepo
+)
 
 type StackFile struct {
 	Name   string           `yaml:"name"`
 	Type   string           `yaml:"type"`
 	Stacks map[string]Stack `yaml:"stacks"`
+	Infra  map[string]Stack `yaml:"infra,omitempty"`
 }
 
 // NewStackFile reads and parses the stack file from the given path
