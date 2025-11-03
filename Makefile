@@ -39,6 +39,7 @@ help-message:
 	@echo -e "  ${Green}version${Reset}   		- 🚧Display version information"
 	@echo -e "  ${Green}test${Reset}      		- 🚧Test the application"
 	@echo -e "  ${Green}format${Reset}    		- 🚧Format the code"
+	@echo -e "  ${Green}tidy${Reset}      		- 🚧Tidy Go modules"
 	@echo -e "  ${Green}help-message${Reset} 	- 📋Display this help message"
 	@echo ""
 
@@ -72,6 +73,11 @@ format:
 	@echo -e "${Yellow}🚧Formatting code...${Reset}"
 	go fmt ./...
 	@echo -e "${Green}Code formatting complete.${Reset}"
+
+tidy:
+	@echo -e "${Yellow}🚧Tidying Go modules...${Reset}"
+	cd $(SRC) && go mod tidy -v
+	@echo -e "${Green}Go modules tidied.${Reset} " 
 
 
 
