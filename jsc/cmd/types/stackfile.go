@@ -10,9 +10,9 @@ import (
 )
 
 type Stack struct {
-	DependsOn []string `yaml:"dependsOn,omitempty"`
-	Type      string   `yaml:"type,omitempty"`
-	Source    string   `yaml:"src,omitempty"`
+	DependsOn []string `json:"dependsOn,omitempty"`
+	Type      string   `json:"type,omitempty"`
+	Source    string   `json:"src,omitempty"`
 }
 
 type StackType int
@@ -23,10 +23,10 @@ const (
 )
 
 type StackFile struct {
-	Name   string           `yaml:"name"`
-	Type   string           `yaml:"type"`
-	Stacks map[string]Stack `yaml:"stacks"`
-	Infra  map[string]Stack `yaml:"infra,omitempty"`
+	Name   string           `json:"name"`
+	Type   string           `json:"type"`
+	Stacks map[string]Stack `json:"stacks"`
+	Infra  map[string]Stack `json:"infra,omitempty"`
 }
 
 // NewStackFile reads and parses the stack file from the given path
@@ -55,7 +55,7 @@ func (s *StackFile) Validate(filePath string) (*StackFile, error) {
 
 // IsRootStack checks if the stack file is of type .rootstack
 func (s *StackFile) IsRootStack() bool {
-	return s.Type == ".rootstack"
+	return s.Type == `.rootstack`
 }
 
 func (s *StackFile) PrettyPrint() string {

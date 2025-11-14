@@ -10,15 +10,22 @@ import (
 )
 
 var (
-	BASE_PATH       string                     // base path for the Just-Simple-Cloud environment
+	BASE_PATH string // base path for the Just-Simple-Cloud environment
+
+	// Default values for cloud file
+	CLOUD_FILE_NAME string          = ".cloud" // default cloud file name
+	CLOUD_FILE      string          = ""       // full path to the cloud file
+	CLOUD_DATA      types.CloudFile            // parsed cloud file data
+
+	// Default values for stack file
 	STACK_FILE_NAME string          = ".stack" // default stack file name
 	STACK_FILE      string          = ""       // full path to the stack file
-	STACK_DATA      types.StackFile            // parsed stack file datata
+	STACK_DATA      types.StackFile            // parsed stack file data
+
 )
 
+// Initialization logic for the jsc
 func Init() {
-	// Initialization logic for the libs package
-
 	if os.Getenv("BASE_PATH") != "" {
 		key := os.Getenv("BASE_PATH")
 		// remove potential quotes
