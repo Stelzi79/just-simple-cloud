@@ -23,6 +23,13 @@ func DebugInfo(cmd *cobra.Command) {
 		}
 
 		log.Println("`BASE_PATH` set to:", libs.BASE_PATH)
+
+		// Log Cloud File information
+		log.Println("`CLOUD_FILE_NAME` set to:", libs.CLOUD_FILE_NAME)
+		log.Println("`CLOUD_FILE` set to:", libs.CLOUD_FILE)
+		log.Printf("Loaded cloud file: %+v", libs.CLOUD_DATA.PrettyPrint())
+
+		// Log Stack File information
 		log.Println("`STACK_FILE_NAME` set to:", libs.STACK_FILE_NAME)
 		log.Println("`STACK_FILE` set to:", libs.STACK_FILE)
 		log.Printf("Loaded stack file: %+v", libs.STACK_DATA.PrettyPrint())

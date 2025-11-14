@@ -6,3 +6,8 @@ type CloudFile struct {
 	Provider string `json:"provider"`
 	Region   string `json:"region"`
 }
+
+func (c CloudFile) PrettyPrint() any {
+	// panic("unimplemented")
+	return nil
+}

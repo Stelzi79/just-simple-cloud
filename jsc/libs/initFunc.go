@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/Stelzi79/just-simple-cloud/cmd/types"
+	"github.com/Stelzi79/just-simple-cloud/types"
 )
 
 var (
@@ -51,6 +51,29 @@ func Init() {
 		log.Fatalf("BASE_PATH does not exist: '%s'", BASE_PATH)
 	}
 
+	// Read Cloud File and validate
+	// get CLOUD_FILE_NAME from env variable if set
+	if os.Getenv("CLOUD_FILE_NAME") != "" {
+		CLOUD_FILE_NAME = os.Getenv("CLOUD_FILE_NAME")
+		// remove potential quotes
+		CLOUD_FILE_NAME = strings.ReplaceAll(CLOUD_FILE_NAME, "\"", "")
+		// remove trailing whitespace
+		CLOUD_FILE_NAME = strings.TrimSpace(CLOUD_FILE_NAME)
+	}
+
+	// check if .cloud file exists in BASE_PATH
+	cloudFilePath := filepath.Join(BASE_PATH, CLOUD_FILE_NAME)
+	if s, err := os.Stat(cloudFilePath); os.IsNotExist(err) || s.IsDir() {
+		log.Fatalf("'%s' file does not exist in BASE_PATH: '%s'", CLOUD_FILE_NAME, cloudFilePath)
+	}
+	CLOUD_FILE = cloudFilePath
+
+	// read and validate .cloud file
+	if err := readAndValidateCloudFile(); err != nil {
+		log.Fatalf("Error reading .cloud file '%s': %v", CLOUD_FILE, err)
+	}
+
+	// Read Stack File and validate
 	// get STACK_FILE_NAME from env variable if set
 	if os.Getenv("STACK_FILE_NAME") != "" {
 		STACK_FILE_NAME = os.Getenv("STACK_FILE_NAME")
@@ -71,6 +94,11 @@ func Init() {
 	if err := readAndValidateStackFile(); err != nil {
 		log.Fatalf("Error reading .stack file '%s': %v", STACK_FILE, err)
 	}
+}
+
+func readAndValidateCloudFile() error {
+	// panic("unimplemented")
+	return nil
 }
 
 func readAndValidateStackFile() error {
