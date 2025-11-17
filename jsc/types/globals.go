@@ -1,7 +1,10 @@
 package types
 
+import "os"
+
 var (
-	BASE_PATH string // base path for the Just-Simple-Cloud environment
+	BASE_PATH    string   // base path for the Just-Simple-Cloud environment
+	RootBasePath *os.Root // root opened base path
 
 	// Default values for cloud file
 	CLOUD_FILE_NAME string    = ".cloud" // default cloud file name

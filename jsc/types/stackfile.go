@@ -2,7 +2,6 @@ package types
 
 import (
 	"errors"
-	"os"
 	"path/filepath"
 	"strings"
 
@@ -29,7 +28,7 @@ type StackFile struct {
 func NewStackFile(stackFilePath string) (*StackFile, error) {
 	var stackData StackFile
 
-	data, err := os.ReadFile(stackFilePath)
+	data, err := RootBasePath.ReadFile(stackFilePath)
 	if err != nil {
 		return nil, err
 	}
@@ -43,7 +42,7 @@ func NewStackFile(stackFilePath string) (*StackFile, error) {
 // Validate checks if the stack file has valid content
 func (stackFile *StackFile) Validate(filePath string) (*StackFile, error) {
 	if stackFile.Name == "" {
-		stackFile.Name = filepath.Base(filepath.Dir(filePath))
+		stackFile.Name = filepath.Base(filepath.Dir(filepath.Join(RootBasePath.Name(), filePath)))
 	}
 	// Validate stacks
 	err, shouldReturn := ValidateStacks(&stackFile.Stacks)
