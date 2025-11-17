@@ -2,6 +2,7 @@ package types
 
 import (
 	"errors"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -63,6 +64,7 @@ func ValidateStacks(stacks *map[string]Stack) (error, bool) {
 	for stackName, stack := range *stacks {
 
 		// set default type if not specified
+		log.Printf("Stack: %s", stack)
 		if stack.Type.Value == "" {
 			stack.Type = enums.Default
 			(*stacks)[stackName] = stack
@@ -75,15 +77,23 @@ func ValidateStacks(stacks *map[string]Stack) (error, bool) {
 				stack.Source = filepath.Join(BASE_PATH, stackName, STACK_FILE_NAME)
 				(*stacks)[stackName] = stack
 			case enums.GitRepo:
-				fallthrough
+				return errors.New("Source is required for stack of type gitRepo (" + stackName + ")"), true
 			default:
 				return errors.New("Source is required for stack of type " + stack.Type.Value + " (" + stackName + ")"), false
 			}
 		} else {
 			// Clean source path
 			stack.Source = strings.TrimSpace(stack.Source)
-			if !strings.Contains(stack.Source, BASE_PATH) {
-				stack.Source = filepath.Join(BASE_PATH, stack.Source)
+			switch stack.Type {
+			case enums.Folder:
+				// If source is not an absolute path, make it relative to BASE_PATH
+				if !strings.Contains(stack.Source, BASE_PATH) {
+					stack.Source = filepath.Join(BASE_PATH, stack.Source)
+				}
+			case enums.GitRepo:
+				if !strings.HasPrefix(stack.Source, "https://github.com") {
+					return errors.New("Source for gitRepo must be a valid Git Repo URL (" + stackName + ")"), true
+				}
 			}
 			(*stacks)[stackName] = stack
 		}

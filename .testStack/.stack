@@ -7,4 +7,6 @@ stacks:
   stackTwo:
     src: stackTwo/.stack
 infra:
-  traefic:
+  traefik:
+    type: gitRepo
+    src: https://github.com/Stelzi79/just-simple-cloud/traefik/.stack
