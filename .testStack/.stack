@@ -1,17 +1,10 @@
 type: .rootstack
 stacks:
   stackOne:
-    type: subFolder
-  stackTwo:
-    src: stackTwo/.stack
-  🏷️🏷️:
     dependsOn:
       - stackTwo
-      - stackOne
-    src: ./.stack
-  sdfkjsadfk asldj flsadjflkas:
-  a:
-  b99:
-    src: ./a/.stack
+    type: folder
+  stackTwo:
+    src: stackTwo/.stack
 infra:
   traefic:

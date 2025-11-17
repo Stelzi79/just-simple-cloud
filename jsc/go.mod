@@ -7,7 +7,10 @@ require (
 	github.com/spf13/cobra v1.10.1
 )
 
-require golang.org/x/text v0.26.0 // indirect
+require (
+	github.com/orsinium-labs/enum v1.5.0 // indirect
+	golang.org/x/text v0.26.0 // indirect
+)
 
 require (
 	github.com/goccy/go-yaml v1.18.0
