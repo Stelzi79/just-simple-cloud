@@ -56,15 +56,6 @@ func Init() {
 	}
 
 	// check if .cloud file exists in BASE_PATH
-	var files []string
-	err = filepath.Walk(types.RootBasePath.Name(), func(path string, info os.FileInfo, err error) error {
-		if !info.IsDir() {
-			files = append(files, path)
-		}
-		return nil
-	})
-
-	log.Printf("Files: %s", files)
 	cloudFilePath := types.CLOUD_FILE_NAME
 	if s, err := types.RootBasePath.Stat(cloudFilePath); os.IsNotExist(err) || s.IsDir() {
 		log.Fatalf("'%s' file does not exist in BASE_PATH: '%s'", types.CLOUD_FILE_NAME, cloudFilePath)
@@ -87,13 +78,6 @@ func Init() {
 
 	// check if .stack file exists in BASE_PATH
 	stackFilePath := filepath.Join(types.STACK_FILE_NAME)
-
-	info, err := types.RootBasePath.Stat(stackFilePath)
-	if err != nil {
-		log.Fatalf("Error stating BASE_PATH %s: %v", types.BASE_PATH, err)
-	}
-	log.Printf("BASE_PATH Info: %+v", info)
-
 	if s, err := types.RootBasePath.Stat(stackFilePath); os.IsNotExist(err) || s.IsDir() {
 		log.Fatalf("'%s' file does not exist in BASE_PATH: '%s'", types.STACK_FILE_NAME, stackFilePath)
 	}
