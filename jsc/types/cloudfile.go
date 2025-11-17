@@ -1,10 +1,16 @@
 package types
 
+type CloudType int
+
+const (
+	local CloudType = iota
+)
+
 type CloudFile struct {
-	Name     string `json:"name"`
-	Type     string `json:"type"`
-	Provider string `json:"provider"`
-	Region   string `json:"region"`
+	Name     string    `json:"name"`
+	Type     CloudType `json:"type"`
+	Provider string    `json:"provider"`
+	Region   string    `json:"region"`
 }
 
 func (c CloudFile) PrettyPrint() any {
