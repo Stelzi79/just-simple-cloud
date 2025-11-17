@@ -2,7 +2,6 @@ package types
 
 import (
 	"errors"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -64,7 +63,7 @@ func ValidateStacks(stacks *map[string]Stack) (error, bool) {
 	for stackName, stack := range *stacks {
 
 		// set default type if not specified
-		log.Printf("Stack: %s", stack)
+		// log.Printf("Stack: %s", stack)
 		if stack.Type.Value == "" {
 			stack.Type = enums.Default
 			(*stacks)[stackName] = stack
