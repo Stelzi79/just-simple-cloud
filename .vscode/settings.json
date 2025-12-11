@@ -18,5 +18,8 @@
 		"titleBar.inactiveBackground": "#5dc9e299",
 		"titleBar.inactiveForeground": "#15202b99"
 	},
-	"peacock.remoteColor": "#5dc9e2"
+	"peacock.remoteColor": "#5dc9e2",
+	"yaml.schemas": {
+		"https://www.schemastore.org/openapi-3.X.json": "file:///mnt/Repositories/00-golang/just-simple-cloud/jsc/openapi.yml"
+	}
 }

@@ -17,7 +17,7 @@ Repository layout
 Quickstart
 
 Prerequisites
-- Go 1.20+ installed
+- Go 1.25.3 installed
 - `make` available in your PATH
 
 Build (use Make)
