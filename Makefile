@@ -46,7 +46,7 @@ help-message:
 # Build the Go application
 build:
 	@echo -e "${Yellow}🚧Building Just Simple Cloud (jsc)...${Reset}"
-	@go build -C $(SRC) -o $(OUT) main.go
+	@go build -C $(SRC) -o $(OUT) -v
 	@echo -e "${Green}Output binary: ${Reset}$(OUT)"
 # Force rebuild by cleaning first
 force-build: clean build
@@ -68,7 +68,7 @@ version:
 # Test the application
 test:
 	@echo -e "${Yellow}🚧Testing Just Simple Cloud (jsc)...${Reset}"
-	@cd $(SRC) &&	go test
+	@cd $(SRC) &&	go test -v ./...
 	@echo -e "${Green}Testing complete.${Reset}"
 # Format the code
 format:
