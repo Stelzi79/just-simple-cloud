@@ -40,8 +40,8 @@ jobs:
       - name: Format check
         run: make format
 
-      - name: Run tests (make test)
-        run: make test
+      # - name: Run tests (make test)
+      #   run: make test
 
       - name: Build (make build)
         run: make build

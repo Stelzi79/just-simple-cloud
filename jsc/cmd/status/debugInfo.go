@@ -23,7 +23,6 @@ func DebugInfo(cmd *cobra.Command) {
 		}
 
 		log.Println("`BASE_PATH` set to:", types.BASE_PATH)
-    
 
 		// Log Cloud File information
 		log.Println("`CLOUD_FILE_NAME` set to:", types.CLOUD_FILE_NAME)
