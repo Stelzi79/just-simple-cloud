@@ -2,9 +2,9 @@ SHELL=/bin/bash
 
 ARGS=""
 BASEDIR=$(PWD)
-OUT=$(BASEDIR)/.out/bin/jsc
-SRC=$(BASEDIR)/jsc
-BASE_PATH=$(BASEDIR)/.testStack # Default base path for testing
+OUT="$(BASEDIR)/.out/bin/jsc"
+SRC="$(BASEDIR)/jsc"
+BASE_PATH="$(BASEDIR)/.testStack" # Default base path for testing
 
 # Color codes
 Green      := \033[0;32m
@@ -64,18 +64,16 @@ clean:
 version:
 	@echo -e "${Yellow}🚧Just Simple Cloud (jsc) version:${Reset}"
 	$(OUT) --version
-	
+
 # Test the application
 test:
 	@echo -e "${Yellow}🚧Testing Just Simple Cloud (jsc)...${Reset}"
-	@cd $(SRC)
-	go test
+	@cd $(SRC) &&	go test
 	@echo -e "${Green}Testing complete.${Reset}"
 # Format the code
 format:
 	@echo -e "${Yellow}🚧Formatting code...${Reset}"
-	@cd $(SRC)
-	go fmt 
+	@cd $(SRC) && go fmt
 	@echo -e "${Green}Code formatting complete.${Reset}"
 tidy:
 	@echo -e "${Yellow}🚧Tidying Go modules...${Reset}"

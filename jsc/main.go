@@ -3,6 +3,7 @@ package main
 import "github.com/Stelzi79/just-simple-cloud/cmd"
 
 func main() {
+
 	cmd.Execute()
 
 	// exec.Command("echo Hello, World!").Run()
