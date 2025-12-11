@@ -77,7 +77,7 @@ format:
 	@echo -e "${Green}Code formatting complete.${Reset}"
 tidy:
 	@echo -e "${Yellow}🚧Tidying Go modules...${Reset}"
-	cd $(SRC) && go mod tidy -v
+	@cd $(SRC) && go mod tidy -v
 	@echo -e "${Green}Go modules tidied.${Reset} " 
 
 
