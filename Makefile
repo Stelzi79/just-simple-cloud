@@ -71,7 +71,7 @@ test:
 # Format the code
 format:
 	@echo -e "${Yellow}🚧Formatting code...${Reset}"
-	go fmt ./...
+	go fmt $(SRC)
 	@echo -e "${Green}Code formatting complete.${Reset}"
 
 tidy:

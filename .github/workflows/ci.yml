@@ -34,14 +34,16 @@ jobs:
       - name: Install Make (if missing)
         run: sudo apt-get update && sudo apt-get install -y make
 
+      
+
       - name: Tidy up Go modules
         run: make tidy
 
       - name: Format check
         run: make format
 
-      # - name: Run tests (make test)
-      #   run: make test
+      - name: Run tests (make test)
+        run: make test
 
       - name: Build (make build)
         run: make build
