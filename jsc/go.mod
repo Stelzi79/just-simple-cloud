@@ -4,13 +4,11 @@ go 1.25.3
 
 require (
 	github.com/fatih/color v1.18.0
+	github.com/orsinium-labs/enum v1.5.0
 	github.com/spf13/cobra v1.10.1
 )
 
-require (
-	github.com/orsinium-labs/enum v1.5.0 // indirect
-	golang.org/x/text v0.26.0 // indirect
-)
+require golang.org/x/text v0.26.0 // indirect
 
 require (
 	github.com/goccy/go-yaml v1.18.0

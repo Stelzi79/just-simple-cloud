@@ -67,7 +67,7 @@ version:
 # Test the application
 test:
 	@echo -e "${Yellow}🚧Testing Just Simple Cloud (jsc)...${Reset}"
-	go test ./...
+	go test $(SRC)
 # Format the code
 format:
 	@echo -e "${Yellow}🚧Formatting code...${Reset}"
